@@ -1,3 +1,5 @@
+/// Extract the IP address from a SockAddr, which is usually
+/// in the form 0.0.0.0:0 (with a colon after the proper address)
 fn format_ipv4_address(address: &str) -> &str {
   let index = address.chars().position(|c| c == ':').unwrap();
   return &address[..index];
@@ -12,8 +14,8 @@ fn main() {
           println!("{}", format_ipv4_address(&address.to_string()));
         }
       }
-      None => {
-        // println!("interface {} with unsupported address family", ifaddr.interface_name);
+      _ => {
+        // do nothing in case of invalid address
       }
     }
   }
